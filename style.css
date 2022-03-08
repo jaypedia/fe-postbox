@@ -1,26 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+h1,
 h3 {
   padding: 0;
   margin: 0;
 }
 
+button {
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+:root {
+  --gray: #d8d5d5;
+  --blue: #85b6ff;
+  --pink: #fabac3;
+  --purple: #d99bff;
+  --red: #ff9790;
+  --yellow: #ffd233;
+}
+
 .container {
   display: grid;
-  background-color: #85b6ff;
+  background-color: var(--blue);
   grid-template-areas:
-    'header header header'
-    'main main aside'
-    'main main aside';
-  width: 80%;
+    "header header header"
+    "main main aside"
+    "main main aside";
+  width: 1000px;
+  height: 700px;
   grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 3fr 3fr;
 }
 
 .header {
-  background-color: #d8d5d5;
+  background-color: var(--gray);
   grid-area: header;
 }
 
 .title {
   text-align: center;
+  line-height: 100px;
 }
 
 .main {
@@ -29,15 +66,37 @@ h3 {
   grid-template-rows: 1fr 1fr;
   grid-area: main;
   gap: 10px;
+  padding: 10px;
 }
 
 .aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
   grid-area: aside;
-  background-color: pink;
+  background-color: var(--yellow);
 }
 
 .town {
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 10px;
+}
+
+.town-name {
+  font-size: 0.9rem;
+}
+
+.resultbox {
+  background-color: #eeeeee;
+  padding: 20px;
+}
+
+.check-postbox {
+  background-color: var(--red);
+}
+
+.refresh {
+  background-color: var(--purple);
 }

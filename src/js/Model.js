@@ -1,30 +1,61 @@
 import { getRandomNumber } from './util/utils.js';
-import {
-  MAX_TOWN_COUNT,
-  MIN_TOWN_COUNT,
-  WRAP_COUNT,
-} from './util/constants.js';
+import { COUNT, TOWN_NAME } from './util/constants.js';
 
 class Model {
   constructor() {
-    this.wrapCount = WRAP_COUNT;
-    this.maxTownCount = MAX_TOWN_COUNT;
-    this.minTownCount = MIN_TOWN_COUNT;
+    this.wrapCount = COUNT.WRAP;
+    this.maxTownCount = COUNT.MAX_TOWN;
+    this.minTownCount = COUNT.MIN_TOWN;
     this.townNameIdx = 0;
-    this.townData = {};
+    this.townDataArr = [];
+
+    this.createTownDataArr();
   }
 
-  get nestedTownCount() {
-    return getRandomNumber(this.minTownCount, this.maxTownCount);
-  }
-
-  createData() {
-    this.townData = {
-      location: { top: 10, left: 10 },
-      size: { width: 30, heigth: 90 },
-      nameIdx: 0,
+  get townData() {
+    return {
+      location: this.setLocation(),
+      size: this.setSize(),
+      townName: '',
       children: [],
     };
+  }
+
+  createOneTownData() {
+    const nestedTownCount = getRandomNumber(
+      this.minTownCount,
+      this.maxTownCount
+    );
+
+    let i = 0;
+    const outerTownData = this.townData;
+    outerTownData.townName = TOWN_NAME[this.townNameIdx++];
+    let current = outerTownData;
+
+    while (i < nestedTownCount) {
+      const child = this.townData;
+      child.townName = TOWN_NAME[this.townNameIdx++];
+      current.children.push(child);
+      current = current.children[0];
+      i++;
+    }
+
+    return outerTownData;
+  }
+
+  createTownDataArr() {
+    while (this.wrapCount--) {
+      this.townDataArr.push(this.createOneTownData());
+    }
+    console.log(this.townDataArr);
+  }
+
+  setLocation() {
+    return { top: getRandomNumber(0, 10), left: getRandomNumber(0, 10) };
+  }
+
+  setSize() {
+    return { width: getRandomNumber(0, 10), heigth: getRandomNumber(0, 10) };
   }
 }
 

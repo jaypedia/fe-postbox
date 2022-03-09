@@ -1,5 +1,9 @@
-const MAX_TOWN_COUNT = 7;
-const MIN_TOWN_COUNT = 1;
-const WRAP_COUNT = 4;
+const COUNT = {
+  MAX_TOWN: 7,
+  MIN_TOWN: 1,
+  WRAP: 4,
+};
 
-export { MAX_TOWN_COUNT, MIN_TOWN_COUNT, WRAP_COUNT };
+const TOWN_NAME = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+export { COUNT, TOWN_NAME };

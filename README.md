@@ -56,6 +56,41 @@ class DomApi {
 
 ### Questions
 
+#### 1. 인스턴스 프로퍼티에 대한 질문
+
+```js
+// Model.js
+class Model {
+  constructor() {
+    // (1) 현재 방식
+    this.wrapCount = COUNT.WRAP;
+    this.maxTownCount = COUNT.MAX_TOWN;
+    this.minTownCount = COUNT.MIN_TOWN;
+    ...
+  }
+
+    // (2) 고민 중인 방식
+    createOneTownData() {
+    const nestedTownCount = getRandomNumber(
+     COUNT.MIN_TOWN, COUNT.MAX_TOWN);
+    ...
+
+// index.js
+const init = () => {
+  const model = new Model(); // (3) COUNT들을 인자로 넘겨주기?
+  const view = new View();
+  new Controller(model, view);
+};
+```
+
+- (1) Model 인스턴스가 각 COUNT를 property로 가지고 있는 게 나을까요?
+- (2) 아니면 그냥 import 해 온 상수를 this를 쓰지 않고 바로 쓰는 게 나을까요?
+- (3) Model을 생성할 때 인자로 각 COUNT를 넘겨 주는 방식은 어떨까요?
+
+#### 2. Model의 이름에 대한 질문
+
+- MVC 패턴을 적용하므로 우선 Model이라는 이름으로 클래스를 만들었는데, 그것보다는 데이터를 좀 더 잘 나타낼 수 있는 Town 등의 이름으로 짓는 것이 더 나은 방법일까요?
+
 ---
 
 ### Reference

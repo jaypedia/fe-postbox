@@ -41,11 +41,9 @@ button:hover {
   display: grid;
   background-color: var(--blue);
   grid-template-areas:
-    "header header header"
-    "main main aside"
-    "main main aside";
-  width: 1000px;
-  height: 700px;
+    'header header header'
+    'main main aside'
+    'main main aside';
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 3fr 3fr;
 }
@@ -82,6 +80,7 @@ button:hover {
   border: 1px solid black;
   border-radius: 20px;
   padding: 10px;
+  display: flex;
 }
 
 .town-name {
@@ -99,4 +98,9 @@ button:hover {
 
 .refresh {
   background-color: var(--purple);
+}
+
+.wrap {
+  width: 400px;
+  height: 400px;
 }

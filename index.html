@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마을지도</title>
+    <link rel="stylesheet" href="./src/css/style.css" />
+    <script src="./src/js/index.js" type="module" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1 class="title">마을지도</h1>
+      </header>
+      <main class="main">
+        <div class="wrap first">
+          <div class="town">
+            <h3 class="town-name">A<span class="postbox">📭</span></h3>
+            <div class="town">
+              <h3 class="town-name">B<span class="postbox">📭</span></h3>
+              <div class="town">
+                <h3 class="town-name">C<span class="postbox">📭</span></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wrap second"></div>
+        <div class="wrap third"></div>
+        <div class="wrap fourth"></div>
+      </main>
+      <aside class="aside">
+        <button class="check-postbox">빨간 우체통 확인</button>
+        <div class="resultbox count">A, B, C, D 총 4개의 마을입니다.</div>
+        <div class="resultbox size">우체통의 크기는 D, B, C, A 순입니다.</div>
+        <button class="refresh">새로고침 버튼</button>
+      </aside>
+    </div>
+  </body>
+</html>

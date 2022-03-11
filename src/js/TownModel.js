@@ -1,6 +1,6 @@
 import { getRandomNumber, getRandomBool } from './util/utils.js';
 
-class Model {
+class TownModel {
   constructor(constants) {
     this.count = constants.COUNT;
     this.townName = constants.TOWN_NAME;
@@ -85,4 +85,4 @@ class Model {
   }
 }
 
-export { Model };
+export { TownModel };

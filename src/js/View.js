@@ -1,8 +1,8 @@
 import { DomApi } from './util/DomApi.js';
-import { TOWN_NAME } from './util/constants.js';
 
 class View {
-  constructor() {
+  constructor(townName) {
+    this.townName = townName;
     this.domApi = new DomApi();
   }
 
@@ -52,7 +52,7 @@ class View {
   }
 
   displayTownCount(totalTownCount) {
-    const result = TOWN_NAME.slice(0, totalTownCount).split('').join(', ');
+    const result = this.townName.slice(0, totalTownCount).split('').join(', ');
     this.domApi.getElementByclassName(
       'total-count'
     ).textContent = `${result} 총 ${totalTownCount}개의 마을입니다.`;

@@ -12,4 +12,9 @@ const delay = (ms) => {
   });
 };
 
-export { getRandomNumber, getRandomBool, delay };
+const fetchData = async () => {
+  const data = await fetch('/constants');
+  return data.json();
+};
+
+export { getRandomNumber, getRandomBool, delay, fetchData };

@@ -1,8 +1,10 @@
 import { getRandomNumber, getRandomBool } from './util/utils.js';
-import { COUNT, TOWN_NAME, PLACE_SELF } from './util/constants.js';
 
 class Model {
-  constructor() {
+  constructor(constants) {
+    this.count = constants.COUNT;
+    this.townName = constants.TOWN_NAME;
+    this.placeSelf = constants.PLACE_SELF;
     this.townNameIdx = 0;
     this.townData = [];
     this.postboxTown = [];
@@ -22,11 +24,14 @@ class Model {
   }
 
   createEachTownData() {
-    const nestedTownCount = getRandomNumber(COUNT.MIN_TOWN, COUNT.MAX_TOWN - 1);
+    const nestedTownCount = getRandomNumber(
+      this.count.MIN_TOWN,
+      this.count.MAX_TOWN - 1
+    );
     this.totalTownCount += nestedTownCount + 1;
 
     const outerTownData = this.eachTownData;
-    outerTownData.townName = TOWN_NAME[this.townNameIdx++];
+    outerTownData.townName = this.townName[this.townNameIdx++];
     if (outerTownData.postbox) {
       this.postboxTown.push([
         outerTownData.townName,
@@ -39,7 +44,7 @@ class Model {
 
     for (let i = 0; i < nestedTownCount; i++) {
       const child = this.eachTownData;
-      child.townName = TOWN_NAME[this.townNameIdx++];
+      child.townName = this.townName[this.townNameIdx++];
       if (child.postbox) {
         this.postboxTown.push([child.townName, child.postboxSize]);
       }
@@ -53,13 +58,13 @@ class Model {
   }
 
   createTownData() {
-    while (COUNT.WRAP--) {
+    while (this.count.WRAP--) {
       this.townData = [...this.townData, this.createEachTownData()];
     }
   }
 
   setLocation() {
-    return PLACE_SELF[getRandomNumber(0, PLACE_SELF.length - 1)];
+    return this.placeSelf[getRandomNumber(0, this.placeSelf.length - 1)];
   }
 
   setSize(nestedTownCount) {

@@ -110,3 +110,7 @@ button:hover {
   width: 400px;
   height: 400px;
 }
+
+.has-postbox {
+  border: 4px solid red;
+}

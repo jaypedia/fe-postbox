@@ -9,6 +9,7 @@ class Model {
     this.minTownCount = COUNT.MIN_TOWN;
     this.townNameIdx = 0;
     this.townDataArr = [];
+    this.postboxTown = [];
     this.domApi = new DomApi();
     this.totalTownCount = 0;
     this.createTownDataArr();
@@ -38,6 +39,12 @@ class Model {
 
     const outerTownData = this.townData;
     outerTownData.townName = TOWN_NAME[this.townNameIdx++];
+    if (outerTownData.postbox) {
+      this.postboxTown.push([
+        outerTownData.townName,
+        outerTownData.postboxSize,
+      ]);
+    }
     outerTownData.nestedTownCount = nestedTownCount;
     outerTownData.size = this.setSize(outerTownData.nestedTownCount);
     let current = outerTownData;
@@ -45,6 +52,9 @@ class Model {
     for (let i = 0; i < nestedTownCount; i++) {
       const child = this.townData;
       child.townName = TOWN_NAME[this.townNameIdx++];
+      if (child.postbox) {
+        this.postboxTown.push([child.townName, child.postboxSize]);
+      }
       child.nestedTownCount = nestedTownCount - i - 1;
       child.size = this.setSize(child.nestedTownCount);
       current.children.push(child);
@@ -86,6 +96,8 @@ class Model {
   createTownElement(currentData) {
     const town = document.createElement('div');
     town.classList.add('town');
+    if (currentData.postbox) town.classList.add('has-postbox');
+
     town.style.width = `${currentData.size.width}px`;
     town.style.height = `${currentData.size.height}px`;
     town.style.placeSelf = currentData.location;
@@ -116,6 +128,7 @@ class Model {
     }
     this.domApi.getElementByclassName(className).append(towns);
     this.displayTownCount();
+    this.displayPostboxSize();
   }
 
   displayTownCount() {
@@ -123,6 +136,16 @@ class Model {
     this.domApi.getElementByclassName(
       'count'
     ).textContent = `${result} 총 ${this.totalTownCount}개의 마을입니다.`;
+  }
+
+  displayPostboxSize() {
+    this.postboxTown.sort((a, b) => b[1] - a[1]);
+    const result = this.postboxTown
+      .reduce((acc, cur) => (acc += `${cur[0]}, `), '')
+      .slice(0, -2);
+    this.domApi.getElementByclassName(
+      'size'
+    ).textContent = `우체통이 있는 마을의 개수는 총 ${this.postboxTown.length}개이고, 크기는 ${result} 순입니다.`;
   }
 }
 

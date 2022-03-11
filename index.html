@@ -11,7 +11,7 @@
   <body>
     <div class="container">
       <header class="header">
-        <h1 class="title">마을지도</h1>
+        <h1 class="title">🏠마을지도📭</h1>
       </header>
       <main class="main">
         <div class="wrap first"></div>
@@ -20,10 +20,11 @@
         <div class="wrap fourth"></div>
       </main>
       <aside class="aside">
-        <button class="check-postbox">빨간 우체통 확인</button>
-        <div class="resultbox count">A, B, C, D 총 4개의 마을입니다.</div>
-        <div class="resultbox size">우체통의 크기는 D, B, C, A 순입니다.</div>
-        <button class="refresh">새로고침 버튼</button>
+        <button class="check-postbox">우체통 확인</button>
+        <div class="resultbox total-count"></div>
+        <div class="resultbox postbox-count"></div>
+        <div class="resultbox postbox-size"></div>
+        <button class="refresh" onClick="history.go(0)">새로고침 버튼</button>
       </aside>
     </div>
   </body>

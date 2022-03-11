@@ -128,24 +128,33 @@ class Model {
     }
     this.domApi.getElementByclassName(className).append(towns);
     this.displayTownCount();
-    this.displayPostboxSize();
   }
 
   displayTownCount() {
     const result = TOWN_NAME.slice(0, this.totalTownCount).split('').join(', ');
     this.domApi.getElementByclassName(
-      'count'
+      'total-count'
     ).textContent = `${result} 총 ${this.totalTownCount}개의 마을입니다.`;
   }
 
-  displayPostboxSize() {
-    this.postboxTown.sort((a, b) => b[1] - a[1]);
+  displayPostboxTownCount() {
     const result = this.postboxTown
       .reduce((acc, cur) => (acc += `${cur[0]}, `), '')
       .slice(0, -2);
     this.domApi.getElementByclassName(
-      'size'
-    ).textContent = `우체통이 있는 마을의 개수는 총 ${this.postboxTown.length}개이고, 크기는 ${result} 순입니다.`;
+      'postbox-count'
+    ).textContent = `우체통이 있는 마을은 ${result} 총 ${this.postboxTown.length}개입니다.`;
+  }
+
+  displayPostboxSize() {
+    const postboxTown = [...this.postboxTown];
+    postboxTown.sort((a, b) => b[1] - a[1]);
+    const result = postboxTown
+      .reduce((acc, cur) => (acc += `${cur[0]}, `), '')
+      .slice(0, -2);
+    this.domApi.getElementByclassName(
+      'postbox-size'
+    ).textContent = `우체통이 있는 마을의 우체통 크기는 ${result} 순입니다.`;
   }
 }
 

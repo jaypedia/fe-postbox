@@ -1,0 +1,7 @@
+{
+  "result": {
+    "COUNT": { "MAX_TOWN": 7, "MIN_TOWN": 1, "WRAP": 4 },
+    "TOWN_NAME": "ABCDEFGHIJKLMNOPQRSTUVWXYZab",
+    "PLACE_SELF": ["start", "center", "end"]
+  }
+}

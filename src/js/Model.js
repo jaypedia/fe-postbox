@@ -10,6 +10,7 @@ class Model {
     this.townNameIdx = 0;
     this.townDataArr = [];
     this.domApi = new DomApi();
+    this.totalTownCount = 0;
     this.createTownDataArr();
     this.createTowns('first', 0);
     this.createTowns('second', 1);
@@ -33,6 +34,7 @@ class Model {
       this.minTownCount,
       this.maxTownCount - 1
     );
+    this.totalTownCount += nestedTownCount + 1;
 
     const outerTownData = this.townData;
     outerTownData.townName = TOWN_NAME[this.townNameIdx++];
@@ -57,6 +59,7 @@ class Model {
       this.townDataArr.push(this.createOneTownData());
     }
     console.log(this.townDataArr);
+    console.log(this.totalTownCount);
   }
 
   setLocation() {
@@ -79,7 +82,6 @@ class Model {
       ),
     };
   }
-  ㅇ;
 
   createTownElement(currentData) {
     const town = document.createElement('div');
@@ -113,6 +115,14 @@ class Model {
       current = current.children[0];
     }
     this.domApi.getElementByclassName(className).append(towns);
+    this.displayTownCount();
+  }
+
+  displayTownCount() {
+    const result = TOWN_NAME.slice(0, this.totalTownCount).split('').join(', ');
+    this.domApi.getElementByclassName(
+      'count'
+    ).textContent = `${result} 총 ${this.totalTownCount}개의 마을입니다.`;
   }
 }
 

@@ -98,3 +98,55 @@ const init = () => {
 [Applying tree traversal algorithms to DOM](https://dev.to/anishkumar/applying-tree-traversal-algorithms-to-dom-14bl)
 [Tree data structure in JavaScript](https://stackfull.dev/tree-data-structure-in-javascript)
 [MVC pattern](https://m.blog.naver.com/jhc9639/220967034588)
+
+---
+
+## Mission 2 & 3
+
+![Animation](https://user-images.githubusercontent.com/85419343/157824641-194e97ff-7c1e-4255-b442-91d39ec452c1.gif)
+
+### 1. MVC 패턴 구현
+
+- MVC 패턴을 적용해 보았는데, 잘 구현한 방식인지 피드백을 주시면 감사하겠습니다.
+
+### 2. 비동기 유틸 함수 추가
+
+- Promise를 리턴하는 delay 함수
+- 데이터를 fetch하는 fetchData 함수
+
+### 3. Express 사용
+
+- express 설치 및 이용하여 현재 프로그램 동작되도록 한 점
+- 기존에 constants.js로 관리되던 데이터들을 서버로부터 json형태로 전송받아 사용하도록 한 점
+
+### 4. 피드백 반영
+
+- 기존 Model 파일명과 클래스명을 TownModel로 변경
+- while문을 for문으로 변경
+- DomApi에서 사용한 for..of문 안에 사용한 let 키워드를 const로 변경
+
+### 아쉬운 점 & 개선할 점
+
+1. sort 함수 미구현
+2. TownModel의 `createEachTownData`함수에 중복이 많음
+3. 매직 넘버 사용
+4. 지도를 4분면으로 나눠서 구현한 점 (자체 이지모드)
+5. 마을 안에 형제 마을이 존재할 수 없게 구현한 점
+
+### 회고
+
+![image](https://user-images.githubusercontent.com/85419343/157826206-c7e0597a-cfd7-4b75-b872-f5d38f7b1f85.png)
+
+- 5일 간의 우리의 피땀눈물.(사실은 더 많았음😂)
+- Figma라는 좋은 협업 툴을 활용하여 서로의 생각을 빠르게 공유할 수 있어서 좋았습니다.
+
+#### BB
+
+- 페어로 진행하다보니 집중하는 시간이 매우 늘었습니다. 평소에 혼자 진행할 때에 얼마나 쉬어가면서 했는지😂를 느낄 수 있었습니다.
+  (대면으로 진행되었다면 더 의사소통 하는 데 편했을 것 같다. 코xx......)
+- 혼자서 했다면 적용할 생각도 못했을 MVC패턴 적용도 경험해 볼 수 있어서 좋았습니다!
+
+#### Millie
+
+- 혼자서 생각할 수 없었던 것들을 구현하고 사고가 확장되는 경험을 했던 게 매우 좋았습니다. (예를 들어 마을을 배치하는 로직을 top, left를 조정해서 하는 것으로만 생각했었는데 BB가 flex의 justify-self와 align-self를 활용해서 하는 방안을 제시했을 때 등)
+- 아침 시간을 활용해서 페어 프로그래밍을 해봤는데, 즐거운 경험이었습니다.

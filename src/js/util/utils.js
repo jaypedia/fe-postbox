@@ -2,4 +2,8 @@ const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-export { getRandomNumber };
+const getRandomBool = () => {
+  return !!Math.floor(Math.random() * 2);
+};
+
+export { getRandomNumber, getRandomBool };

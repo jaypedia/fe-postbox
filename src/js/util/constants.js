@@ -4,6 +4,8 @@ const COUNT = {
   WRAP: 4,
 };
 
-const TOWN_NAME = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const TOWN_NAME = 'ABCDEFGHIJKLMNOPQRSTUVWXYZab';
 
-export { COUNT, TOWN_NAME };
+const PLACE_SELF = ['start', 'center', 'end'];
+
+export { COUNT, TOWN_NAME, PLACE_SELF };

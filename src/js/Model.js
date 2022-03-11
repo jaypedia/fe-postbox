@@ -1,5 +1,5 @@
-import { getRandomNumber } from './util/utils.js';
-import { COUNT, TOWN_NAME } from './util/constants.js';
+import { getRandomNumber, getRandomBool } from './util/utils.js';
+import { COUNT, TOWN_NAME, PLACE_SELF } from './util/constants.js';
 import { DomApi } from './util/DomApi.js';
 
 class Model {
@@ -19,33 +19,32 @@ class Model {
 
   get townData() {
     return {
-      location: this.setLocation(),
+      location: `${this.setLocation()} ${this.setLocation()}`,
       townName: '',
       children: [],
-      postbox: true,
-      layer: 1,
-      size: {
-        width: getRandomNumber(400, 400),
-        height: getRandomNumber(400, 400),
-      },
+      postbox: getRandomBool(),
+      postboxSize: Math.random(),
+      nestedTownCount: 0,
     };
   }
 
   createOneTownData() {
     const nestedTownCount = getRandomNumber(
       this.minTownCount,
-      this.maxTownCount
+      this.maxTownCount - 1
     );
 
     const outerTownData = this.townData;
     outerTownData.townName = TOWN_NAME[this.townNameIdx++];
+    outerTownData.nestedTownCount = nestedTownCount;
+    outerTownData.size = this.setSize(outerTownData.nestedTownCount);
     let current = outerTownData;
 
     for (let i = 0; i < nestedTownCount; i++) {
       const child = this.townData;
       child.townName = TOWN_NAME[this.townNameIdx++];
-      child.layer = i + 1;
-      child.size = this.setSize(child.layer);
+      child.nestedTownCount = nestedTownCount - i - 1;
+      child.size = this.setSize(child.nestedTownCount);
       current.children.push(child);
       current = current.children[0];
     }
@@ -61,24 +60,33 @@ class Model {
   }
 
   setLocation() {
-    return { top: getRandomNumber(0, 30), left: getRandomNumber(0, 30) };
+    return PLACE_SELF[getRandomNumber(0, PLACE_SELF.length - 1)];
   }
 
-  setSize(layer) {
-    console.log(typeof layer);
+  setSize(nestedTownCount) {
+    if (!nestedTownCount) {
+      return { width: 0, height: 0 };
+    }
+
     return {
-      width: getRandomNumber(100, 400 / layer),
-      height: getRandomNumber(100, 400 / layer),
+      width: getRandomNumber(
+        50 * nestedTownCount + 20,
+        50 * (nestedTownCount + 1) - 20
+      ),
+      height: getRandomNumber(
+        50 * nestedTownCount + 20,
+        50 * (nestedTownCount + 1) - 20
+      ),
     };
   }
+  ㅇ;
 
   createTownElement(currentData) {
     const town = document.createElement('div');
     town.classList.add('town');
-    town.style.paddingTop = `${currentData.location.top}px`;
-    town.style.paddingLeft = `${currentData.location.left}px`;
     town.style.width = `${currentData.size.width}px`;
     town.style.height = `${currentData.size.height}px`;
+    town.style.placeSelf = currentData.location;
 
     const postboxTag = `<span class="postbox">📭</span>`;
     const townName = document.createElement('h3');

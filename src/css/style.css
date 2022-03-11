@@ -30,6 +30,7 @@ button:hover {
 
 :root {
   --gray: #d8d5d5;
+  --dark-gray: #423f3f;
   --blue: #85b6ff;
   --pink: #fabac3;
   --purple: #d99bff;
@@ -77,14 +78,18 @@ button:hover {
 }
 
 .town {
-  border: 1px solid black;
+  border: 2px solid var(--dark-gray);
   border-radius: 20px;
-  padding: 10px;
-  display: flex;
+  display: grid;
+  position: relative;
+  padding: 15px;
 }
 
 .town-name {
   font-size: 0.9rem;
+  position: absolute;
+  top: -20px;
+  left: 50%;
 }
 
 .resultbox {
@@ -101,6 +106,7 @@ button:hover {
 }
 
 .wrap {
+  display: grid;
   width: 400px;
   height: 400px;
 }

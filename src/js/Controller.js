@@ -1,4 +1,5 @@
 import { DomApi } from './util/DomApi.js';
+import { delay } from './util/utils.js';
 class Controller {
   constructor(model, view) {
     this.model = model;
@@ -10,16 +11,16 @@ class Controller {
   addEvent() {
     const postboxCheckBtn = this.domApi.getElementByclassName('check-postbox');
     postboxCheckBtn.addEventListener('click', () => {
-      setTimeout(this.displayPostboxInfo.bind(this), 2000);
+      this.view.displayPostboxTownCount(this.model.postboxTown);
+      this.view.displayPostboxSize(this.model.postboxTown);
+      delay(2000).then(this.highlightPostbox.bind(this));
     });
   }
 
-  displayPostboxInfo() {
+  highlightPostbox() {
     this.domApi.getAllElementsByClassName('has-postbox').forEach((el) => {
       el.classList.add('highlight');
     });
-    this.view.displayPostboxTownCount(this.model.postboxTown);
-    this.view.displayPostboxSize(this.model.postboxTown);
   }
 
   init() {
